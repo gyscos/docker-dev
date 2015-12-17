@@ -1,4 +1,6 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 
-for TARGET in "base-dev" "rust-dev"
-docker build -t $TARGET $TARGET
+for TARGET in "base-dev" "rust-dev" "go-dev"
+do
+	docker build -t $TARGET $TARGET
+done

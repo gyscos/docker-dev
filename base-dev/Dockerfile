@@ -1,9 +1,9 @@
 FROM pritunl/archlinux:latest
 
 # Very base
-RUN pacman -S --noconfirm neovim zsh sudo
+RUN pacman -S --noconfirm neovim zsh sudo cscope
 
-RUN curl -fLo /etc/zsh/zshrc http://abury.fr/etc_zshrc
+COPY zshrc /etc/zsh/
 
 # Some dev tools
 RUN pacman -S --noconfirm git subversion
@@ -19,7 +19,7 @@ RUN echo "alias vim=nvim" >> .zshrc
 
 RUN curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-RUN curl -fLo ~/.config/nvim/init.vim http://abury.fr/init.vim
+COPY init.vim .config/nvim/
 
 RUN nvim +PlugInstall +qall
 
